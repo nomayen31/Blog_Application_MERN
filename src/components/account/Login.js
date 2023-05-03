@@ -1,5 +1,5 @@
 import { TextField, Box, Button, Typography, styled } from '@mui/material';
-import React from 'react'
+import React, { useState } from 'react'
 
 const Component = styled(Box)`
     width: 400px;
@@ -22,19 +22,62 @@ const Wrapper = styled(Box)`
         margin-top: 20px;
     }
 `;
+const LoginButton = styled(Button)`
+    text-transform: none;
+    background: #FB641B;
+    color: #fff;
+    height: 48px;
+    border-radius: 2px;
+`;
+
+const SignupButton = styled(Button)`
+    text-transform: none;
+    background: #fff;
+    color: #2874f0;
+    height: 48px;
+    border-radius: 2px;
+    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%);
+`;
+const Text = styled(Typography)`
+    color: #878787;
+    font-size: 12px;
+`;
+
 const Login = () => {
     const imageURL = 'https://www.sesta.it/wp-content/uploads/2021/03/logo-blog-sesta-trasparente.png';
+    const [account, toggleAccount] = useState("login");
+    const toggleSignup = () =>{
+     account === 'signup' ? toggleAccount('login') :   toggleAccount('signup');
+    }
     return (
         <Component>
             <Box>
                 <Image src={imageURL} alt='login_image' />
-                <Wrapper>
-                <TextField variant='standard'></TextField>
-                <TextField variant='standard'></TextField>
-                <Button variant='contained'>Login</Button>
-                <Typography  style={{ textAlign: 'center' }}>OR</Typography>
-                <Button >Create An Account</Button>
-                </Wrapper>
+                {
+
+                    account === 'login' ?
+                        <Wrapper>
+                            <TextField variant='standard' label="Enter Username" ></TextField>
+                            <TextField variant='standard' label="Enter Password"  ></TextField>
+                            <LoginButton variant='contained'>Login</LoginButton>
+                            <Text style={{ textAlign: 'center' }}>OR</Text>
+                            <SignupButton onClick={()=>toggleSignup()} >Create An Account</SignupButton>
+                        </Wrapper>
+
+                        :
+
+                        <Wrapper>
+                            <TextField variant='standard' label="Enter name" ></TextField>
+                            <TextField variant='standard' label="Enter username"  ></TextField>
+                            <TextField variant='standard' label="Enter Password"  ></TextField>
+                            <SignupButton >Sign Up</SignupButton>
+                            <Text style={{ textAlign: 'center' }}>OR</Text>
+                            <LoginButton
+                            onClick={()=>toggleSignup()}    
+                            variant='contained'>Already Have an account</LoginButton>
+                        </Wrapper>
+                }
+
             </Box>
         </Component>
     )
