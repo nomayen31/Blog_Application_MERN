@@ -9,6 +9,7 @@ import { BrowserRouter, Navigate, Outlet, Route, Routes } from 'react-router-dom
 const PrivateRoute = ({ isAuthenticated, ...props }) => {
   return isAuthenticated ?
     <>
+      <Header />
       <Outlet />
     </>
     : <Navigate replace to='/login' />
@@ -19,7 +20,6 @@ function App() {
   return (
     <DataProvider >
       <BrowserRouter>
-        <Header />
         <div style={{ marginTop: 64 }}>
           <Routes>
             <Route path='/login'
