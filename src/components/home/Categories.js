@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button, Table, TableBody, TableCell, TableHead, TableRow , styled} from '@mui/material'
 import { categories } from '../../constants/data.js'
+import { Link } from 'react-router-dom';
 
 const StyledTable = styled(Table)`
     border: 1px solid rgba(224, 224, 224, 1);
@@ -17,9 +18,10 @@ const StyledButton = styled(Button)`
 
 const Categories = () => {
     return (
-        <>
+        <>  
+        <Link to='/create' style={{textDecoration:'none'}}>
             <StyledButton  variant="contained" color="error">Create Blog</StyledButton>
-
+            </Link>
             <StyledTable>
                 <TableHead>
                     <TableRow>
